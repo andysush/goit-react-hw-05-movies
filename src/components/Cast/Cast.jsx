@@ -7,18 +7,15 @@ import css from './Cast.module.css';
 const Cast = () => {
   const { movieId } = useParams();
   const [movieCasts, setMovieCasts] = useState([]);
-  const [err, setErr] = useState('');
 
   useEffect(() => {
     APIfilms.getCast(movieId)
       .then(data => setMovieCasts(data.cast))
-      .catch(err => setErr(err.message));
-    setErr('');
+      .catch(() => window.alert('Network Error. Please, try again later'));
   }, [movieId]);
 
   return (
     <section className={css.cast__box}>
-      {err && <span>Sorry. {err} 😭 Please, try again later</span>}
       <ul>
         {movieCasts.length > 0 ? (
           movieCasts.map(({ name, id, profile_path, character }) => (

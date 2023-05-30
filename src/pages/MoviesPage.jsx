@@ -7,9 +7,7 @@ import css from './Pages.module.css';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [queryData, setQueryData] = useState([]);
-  const [err, setErr] = useState('');
-  // const location = useLocation();
+  const [queryData, setQueryData] = useState(null);
 
   useEffect(() => {
     const query = searchParams.get('query') ?? '';
@@ -18,7 +16,7 @@ const Movies = () => {
     }
     APIfilms.getSearchFilm(query)
       .then(data => setQueryData(data.results))
-      .catch(err => setErr(err.message));
+      .catch(() => window.alert('Network Error. Please, try again later'));
   }, [searchParams]);
 
   const onsubmit = query => {
@@ -29,8 +27,10 @@ const Movies = () => {
     <div>
       <SearchForm onSubmit={onsubmit} />
       <ul className={css.filmList}>
-        {err && <span>Sorry. {err} 😭 Please, try again later</span>}
-        <MovieList movieData={queryData} />
+        {queryData && <MovieList movieData={queryData} />}
+        {queryData?.length === 0 && (
+          <p>Sorry. There is no films with your request</p>
+        )}
       </ul>
     </div>
   );

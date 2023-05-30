@@ -6,17 +6,15 @@ import css from './Reviews.module.css';
 const Reviews = () => {
   const { movieId } = useParams();
   const [movieReviews, setMovieReviews] = useState([]);
-  const [err, setErr] = useState('');
+
   useEffect(() => {
     APIfilms.getReviews(movieId)
       .then(data => setMovieReviews(data.results))
-      .catch(err => setErr(err.message));
-    setErr('');
+      .catch(() => window.alert('Network Error. Please, try again later'));
   }, [movieId]);
 
   return (
     <div className={css.reviews__box}>
-      {err && <span>Sorry. {err} 😭 Please, try again later</span>}
       <ul>
         {movieReviews.length > 0 ? (
           movieReviews.map(({ id, author, content }) => (

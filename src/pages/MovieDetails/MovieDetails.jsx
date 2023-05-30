@@ -7,14 +7,14 @@ import {
   useParams,
 } from 'react-router-dom';
 import * as APIfilms from 'components/service/tmdb';
-import no_pic from '../../images/no_film_img.png';
+import no_pic from '../../images/No_Image_av.jpeg';
 import css from './MovieDetails.module.css';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieInfo, setMovieInfo] = useState({});
   const [movieGenres, setMovieGenres] = useState([]);
-  const [err, setErr] = useState('');
+
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from || '/movies');
 
@@ -24,24 +24,23 @@ const MovieDetails = () => {
         setMovieInfo(results);
         setMovieGenres(results.genres);
       })
-      .catch(err => setErr(err.message));
-    setErr('');
+      .catch(() => window.alert('Network Error. Please, try again later'));
   }, [movieId]);
   const { title, poster_path, overview, vote_average, release_date } =
     movieInfo;
 
   return (
     <div>
-      {err && <span>Sorry. {err} 😭 Please, try again later</span>}
       <Link to={backLinkRef.current} className={css.film__backBtn}>
         &#10229; Back
       </Link>
       <div className={css.film__card}>
         <img
+          width={200}
           className={css.film__img}
           src={
             poster_path
-              ? `https://image.tmdb.org/t/p/w200/${poster_path}`
+              ? `https://image.tmdb.org/t/p/w500/${poster_path}`
               : no_pic
           }
           alt={`${title}`}
