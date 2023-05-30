@@ -1,0 +1,14 @@
+.movieList__item {
+  display: block;
+  font-size: small;
+  font-weight: 400;
+  text-transform: uppercase;
+  padding: 2px;
+  border: 1px solid rgb(183, 245, 245);
+}
+
+.movieList__item:hover,
+.movieList__item:focus {
+  background-color: #f8f23f;
+  color: #fff;
+}

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import * as APIfilms from 'components/service/tmdb';
 import SearchForm from 'components/Searchform/SearchForm';
+import MovieList from 'components/MovieList/MovieList';
+import css from './Pages.module.css';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [queryData, setQueryData] = useState([]);
   const [err, setErr] = useState('');
-  const location = useLocation();
+  // const location = useLocation();
 
   useEffect(() => {
     const query = searchParams.get('query') ?? '';
@@ -26,17 +28,9 @@ const Movies = () => {
   return (
     <div>
       <SearchForm onSubmit={onsubmit} />
-      <ul>
+      <ul className={css.filmList}>
         {err && <span>Sorry. {err} 😭 Please, try again later</span>}
-        {queryData.map(({ id, title }) => {
-          return (
-            <li key={id}>
-              <Link to={`${id}`} state={{ from: location }}>
-                {title}
-              </Link>
-            </li>
-          );
-        })}
+        <MovieList movieData={queryData} />
       </ul>
     </div>
   );

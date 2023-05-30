@@ -1,32 +1,27 @@
 import * as APIfilms from 'components/service/tmdb';
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import css from './Pages.module.css';
+import MovieList from 'components/MovieList/MovieList';
 
 function Home() {
   const [movieData, setMovieData] = useState([]);
   const [err, setErr] = useState('');
-  const location = useLocation();
 
   useEffect(() => {
     APIfilms.getTrendList()
-      .then(({ results }) => setMovieData([...results]))
+      .then(data => setMovieData(data.results))
       .catch(err => setErr(err.message));
     setErr('');
   }, []);
 
   return (
-    <ul>
-      {err && <span>Sorry. {err} 😭 Please, try again later</span>}
-      {movieData.map(({ id, title }) => {
-        return (
-          <li key={id}>
-            <Link to={`movies/${id}`} state={{ from: location }}>
-              {title}
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <h2 className={css.filmList__title}> Top films: </h2>
+      <ul className={css.filmList}>
+        {err && <span>Sorry. {err} 😭 Please, try again later</span>}
+        <MovieList movieData={movieData} />
+      </ul>
+    </>
   );
 }
 

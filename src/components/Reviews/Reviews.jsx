@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as APIfilms from 'components/service/tmdb';
+import css from './Reviews.module.css';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -14,14 +15,14 @@ const Reviews = () => {
   }, [movieId]);
 
   return (
-    <div>
+    <div className={css.reviews__box}>
       {err && <span>Sorry. {err} 😭 Please, try again later</span>}
       <ul>
         {movieReviews.length > 0 ? (
           movieReviews.map(({ id, author, content }) => (
             <li key={id}>
-              <p>Author: {author}</p>
-              <p>{content}</p>
+              <h3 className={css.reviews__name}>Author: {author}</h3>
+              <p className={css.reviews__text}>{content}</p>
             </li>
           ))
         ) : (

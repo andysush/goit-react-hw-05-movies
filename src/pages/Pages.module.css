@@ -1,0 +1,13 @@
+.filmList {
+  text-align: center;
+}
+
+.filmList__title {
+  background-color: rgb(121, 190, 190);
+  padding: 15px;
+  text-transform: uppercase;
+  font-size: 16px;
+  height: 21.48px;
+  text-align: center;
+  color: #fff;
+}

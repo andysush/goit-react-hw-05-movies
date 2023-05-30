@@ -1,0 +1,88 @@
+.film__backBtn {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 10px 50px;
+  border-radius: 10px;
+  color: rgb(6, 127, 148);
+  margin-bottom: 20px;
+}
+
+.film__backBtn:hover,
+.film__backBtn:focus {
+  background-color: #f8f23f;
+  color: #fff;
+}
+
+.film__img {
+  margin-left: 20px;
+}
+
+.film__card {
+  display: flex;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #000;
+  padding-bottom: 10px;
+}
+
+.film__info {
+  margin-left: 20px;
+}
+
+.film__title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.film__score {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.film__overview,
+.genres {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.film__text {
+  font-size: 11px;
+  margin-bottom: 10px;
+  padding-right: 20px;
+}
+
+.genres__list {
+  display: flex;
+  gap: 10px;
+  font-size: 11px;
+}
+
+.info__title {
+  text-align: center;
+  font-size: 12px;
+}
+
+.info__box {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #000;
+}
+
+.info__submenu {
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-bottom: 10px;
+}
+
+.info__submenu a {
+  text-decoration: underline;
+}
+
+.info__submenu a:hover,
+.info__submenu a:focus {
+  color: blue;
+  text-decoration-color: blue;
+}
