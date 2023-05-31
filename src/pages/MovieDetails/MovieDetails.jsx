@@ -52,7 +52,7 @@ const MovieDetails = () => {
           </p>
           <h3 className={css.film__overview}>Overview</h3>
           <p className={css.film__text}>
-            {overview ? overview : 'Sorry, no overview about this film'}
+            {overview ? overview : 'Sorry, no overview for this film'}
           </p>
           <h3 className={css.genres}>Genres</h3>
           <div className={css.genres__list}>
