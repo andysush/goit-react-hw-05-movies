@@ -7,7 +7,7 @@ import {
   useParams,
 } from 'react-router-dom';
 import * as APIfilms from 'components/service/tmdb';
-import no_pic from '../../images/no_image_av.jpeg';
+import no_pic from 'images/no_image_av.png';
 import css from './MovieDetails.module.css';
 
 const MovieDetails = () => {
