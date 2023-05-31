@@ -6,7 +6,7 @@ const MovieList = ({ movieData }) => {
   const location = useLocation();
 
   return (
-    <>
+    <ul className={css.movieList}>
       {movieData.map(({ id, title }) => {
         return (
           <li key={id} className={css.movieList__item}>
@@ -16,7 +16,7 @@ const MovieList = ({ movieData }) => {
           </li>
         );
       })}
-    </>
+    </ul>
   );
 };
 

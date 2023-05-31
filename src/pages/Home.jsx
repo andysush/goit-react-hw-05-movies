@@ -15,9 +15,8 @@ function Home() {
   return (
     <>
       <h2 className={css.filmList__title}> Top films: </h2>
-      <ul className={css.filmList}>
-        <MovieList movieData={movieData} />
-      </ul>
+
+      <MovieList movieData={movieData} />
     </>
   );
 }

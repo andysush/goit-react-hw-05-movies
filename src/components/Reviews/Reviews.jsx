@@ -15,18 +15,18 @@ const Reviews = () => {
 
   return (
     <div className={css.reviews__box}>
-      <ul>
-        {movieReviews.length > 0 ? (
-          movieReviews.map(({ id, author, content }) => (
+      {movieReviews.length > 0 ? (
+        <ul>
+          {movieReviews.map(({ id, author, content }) => (
             <li key={id}>
               <h3 className={css.reviews__name}>Author: {author}</h3>
               <p className={css.reviews__text}>{content}</p>
             </li>
-          ))
-        ) : (
-          <p>We don't have any reviews for this movie.</p>
-        )}
-      </ul>
+          ))}
+        </ul>
+      ) : (
+        <p>We don't have any reviews for this movie.</p>
+      )}
     </div>
   );
 };

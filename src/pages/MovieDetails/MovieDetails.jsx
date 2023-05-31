@@ -7,14 +7,12 @@ import {
   useParams,
 } from 'react-router-dom';
 import * as APIfilms from 'components/service/tmdb';
-import no_pic from '../../images/No_Image_av.jpeg';
+import no_pic from '../../images/no_image_av.jpeg';
 import css from './MovieDetails.module.css';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-  const [movieInfo, setMovieInfo] = useState({});
-  const [movieGenres, setMovieGenres] = useState([]);
-
+  const [movieInfo, setMovieInfo] = useState(null);
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from || '/movies');
 
@@ -22,11 +20,11 @@ const MovieDetails = () => {
     APIfilms.getFilmByID(movieId)
       .then(results => {
         setMovieInfo(results);
-        setMovieGenres(results.genres);
       })
       .catch(() => window.alert('Network Error. Please, try again later'));
   }, [movieId]);
-  const { title, poster_path, overview, vote_average, release_date } =
+  if (!movieInfo) return;
+  const { title, poster_path, overview, vote_average, release_date, genres } =
     movieInfo;
 
   return (
@@ -47,7 +45,6 @@ const MovieDetails = () => {
         />
         <div className={css.film__info}>
           <h2 className={css.film__title}>
-            {' '}
             {title} ({release_date?.substr(0, 4)})
           </h2>
           <p className={css.film__score}>
@@ -59,8 +56,8 @@ const MovieDetails = () => {
           </p>
           <h3 className={css.genres}>Genres</h3>
           <div className={css.genres__list}>
-            {movieGenres.length > 0
-              ? movieGenres.map(genre => <p key={genre.id}>{genre.name}</p>)
+            {genres.length > 0
+              ? genres.map(genre => <p key={genre.id}>{genre.name}</p>)
               : 'Sorry, no info about genres'}
           </div>
         </div>

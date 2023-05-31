@@ -16,9 +16,9 @@ const Cast = () => {
 
   return (
     <section className={css.cast__box}>
-      <ul>
-        {movieCasts.length > 0 ? (
-          movieCasts.map(({ name, id, profile_path, character }) => (
+      {movieCasts.length > 0 ? (
+        <ul>
+          {movieCasts.map(({ name, id, profile_path, character }) => (
             <li key={id} className={css.cast__item}>
               <img
                 className={css.cast__img}
@@ -34,11 +34,11 @@ const Cast = () => {
               <p className={css.cast__text}>{name}</p>
               <p className={css.cast__text}>Character: {character}</p>
             </li>
-          ))
-        ) : (
-          <p>We don't have info about actors for this movie.</p>
-        )}
-      </ul>
+          ))}
+        </ul>
+      ) : (
+        <p>We don't have info about actors for this movie.</p>
+      )}
     </section>
   );
 };

@@ -3,7 +3,6 @@ import { useSearchParams } from 'react-router-dom';
 import * as APIfilms from 'components/service/tmdb';
 import SearchForm from 'components/Searchform/SearchForm';
 import MovieList from 'components/MovieList/MovieList';
-import css from './Pages.module.css';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,12 +25,10 @@ const Movies = () => {
   return (
     <div>
       <SearchForm onSubmit={onsubmit} />
-      <ul className={css.filmList}>
-        {queryData && <MovieList movieData={queryData} />}
-        {queryData?.length === 0 && (
-          <p>Sorry. There is no films with your request</p>
-        )}
-      </ul>
+      {queryData && <MovieList movieData={queryData} />}
+      {queryData?.length === 0 && (
+        <p>Sorry. There is no films with your request</p>
+      )}
     </div>
   );
 };
